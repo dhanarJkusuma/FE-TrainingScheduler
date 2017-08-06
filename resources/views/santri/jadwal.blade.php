@@ -36,14 +36,14 @@
                     <tr>
                       <td style="width: 10px"><b>{{ $index }}</b></td>
                       <td><b>{{ $hari[$j->hari-1] }}</b></td>
-                      <td><b>{{ $j->group->nama_grup }}</b></td>
+                      <td><b>{{ $j->group->nama_grup }} (Ketua: {{ $j->group->user->name }} )</b></td>
                       <td><b>{{ $sesi[$j->sesi-1] }}</b></td>
                     </tr>
                     @else
                     <tr>
                       <td style="width: 10px">{{ $index }}</td>
                       <td>{{ $hari[$j->hari-1] }}</td>
-                      <td>{{ $j->group->nama_grup }}</td>
+                      <td>{{ $j->group->nama_grup }} (Ketua: {{ $j->group->user->name }} )</td>
                       <td>{{ $sesi[$j->sesi-1] }}</td>
                     </tr>
                     @endif
