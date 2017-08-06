@@ -9,6 +9,7 @@ use App\Kecamatan;
 use App\Group;
 use App\Location;
 use App\Http\Requests\StoreGroup;
+use App\Http\Controllers\GlobalController;
 use PDF;
 class GroupController extends Controller
 {
@@ -21,7 +22,7 @@ class GroupController extends Controller
     public function insertGroup(array $data)
     {
         return Group::create([
-            'ketua_grup_id' => $data['ketua_grup_id'],
+            'ketua_grup_id' => null,
             'nama_grup' => $data['nama_grup'],
             'lokasi_latihan_id' => $data['lokasi_latihan_id']
         ]);
@@ -36,8 +37,7 @@ class GroupController extends Controller
     {
         $groups = Group::paginate(10);
         $location = Location::all();
-        $santri = User::where('is_approved','=',1)->where('status','=','santri')->get(['id','name']);
-        return view('group')->with(compact('groups', 'location','santri'));
+        return view('group')->with(compact('groups', 'location'));
     }
 
     /**
@@ -126,5 +126,15 @@ class GroupController extends Controller
         $pdf = PDF::loadView('group-print', $data);
         return $pdf->download('pagarnusa-grup.pdf');
 
+    }
+
+    public function changeLeader($id, Request $request){
+        $group = Group::find($id);
+        $group->ketua_grup_id = $request->input('leader');
+        $group->save();
+        GlobalController::calculateSession();
+        $request->session()->flash('status','Berhasil mengubah grup.');
+
+        return redirect()->route('group.show',['id' => $id]);
     }
 }

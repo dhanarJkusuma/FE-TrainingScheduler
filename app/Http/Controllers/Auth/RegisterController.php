@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Kecamatan;
+use App\Http\Controllers\GlobalController;
 
 class RegisterController extends Controller
 {
@@ -55,7 +56,8 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'no_hp' => 'required|min:10|max:16',
-            'kecamatan_id' => 'required'
+            'kecamatan_id' => 'required',
+            'alamat' => 'required'
 
         ]);
     }
@@ -74,6 +76,7 @@ class RegisterController extends Controller
             'no_hp' => $data['no_hp'],
             'kecamatan_id' => $data['kecamatan_id'],
             'password' => bcrypt($data['password']),
+            'alamat' => $data['alamat']
         ]);
     }
 
@@ -86,26 +89,10 @@ class RegisterController extends Controller
         
         $data = $this->validator($request->all());
         $this->create($request->all());
-        $this->sendMessage($request->input('no_hp'));
+        GlobalController::sendMessage($request->input('no_hp'), config('smsgateway.zensiva_message'))
         $request->session()->flash('status', 'Permohonan pendaftaran telah terkirim.');
 
         return redirect('login');
     }
 
-    private function sendMessage($phone_no){
-        $userkey = config('smsgateway.zensiva_user_key');
-        $passkey = config('smsgateway.zensiva_user_pass');
-        $pesan = rawurlencode(config('smsgateway.zensiva_message'));
-
-        $url = 'https://reguler.zenziva.net/apps/smsapi.php?userkey='. $userkey .'&passkey='. $passkey .'&nohp='. $phone_no .'&pesan='. $pesan;
-        $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec ($ch);
-        $info = curl_getinfo($ch);
-        $http_result = $info ['http_code'];
-        curl_close ($ch);
-    }
 }

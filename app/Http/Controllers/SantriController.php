@@ -7,6 +7,7 @@ use App\User;
 use App\Kecamatan;
 use App\Group;
 use App\Http\Requests\StoreSantri;
+use App\Http\Controllers\GlobalController;
 
 class SantriController extends Controller
 {
@@ -29,12 +30,14 @@ class SantriController extends Controller
             'kecamatan_id' => $data['kecamatan_id'],
             'password' => bcrypt($data['password']),
             'status' => 'santri',
-            'is_approved' => 1
+            'is_approved' => 1,
+            'alamat' => $data['alamat']
         ]);
     }
 
     public function index()
     {
+        GlobalController::calculateSession();
         $groups = Group::all(['id', 'nama_grup']);
         $users = User::where('is_approved', '=', 1)->where('status', '=', 'santri')->paginate(10);
         $kecamatan = Kecamatan::all();
@@ -133,5 +136,14 @@ class SantriController extends Controller
     public static function checkCount(){
         $santri = User::where('is_approved','=',1)->where('status','=','santri')->count();
         session(['santri' => $santri]);
+    }
+
+    public function lvlup($id, Request $request){
+        $user = User::find($id);
+        $user->grup_id = null;
+        $user->status = 'pelatih';
+        $user->save();
+        $request->session()->flash('status', 'Berhasil menjadikan santri yang bernama "' . $user->name . '" sebagai pelatih.');
+        return redirect('santri');
     }
 }

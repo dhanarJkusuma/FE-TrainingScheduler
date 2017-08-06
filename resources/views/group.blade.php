@@ -50,7 +50,7 @@
       <tr>
         <td style="width: 10px">{{ $index }}</td>
         <td>{{ $group->nama_grup }}</td>
-        <td>{{ $group->user->name }}</td>
+        <td>{{ ($group->user != null) ? $group->user->name : "Belum Tersedia." }}</td>
         <td>{{ $group->location->nama }}</td>
         <td>
           <a href="{{ url('group') }}/{{ $group->id }}">
@@ -125,16 +125,6 @@
               <label for="nama_grup" class="col-sm-2 control-label">Nama Grup</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="nama_grup" id="nama_grup" placeholder="Nama Grup">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="ketua_grup_id" class="col-sm-2 control-label">Ketua Grup</label>
-              <div class="col-sm-10">
-                <select class="form-control" id="ketua" name="ketua_grup_id" style="width:100%;">
-                  @foreach($santri as $s)
-                    <option value="{{ $s->id }}">{{ $s->name }}</option>
-                  @endforeach
-                </select>
               </div>
             </div>
             <div class="form-group">

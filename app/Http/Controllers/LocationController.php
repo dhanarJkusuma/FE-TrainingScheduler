@@ -7,6 +7,7 @@ use App\User;
 use App\Location;
 use App\Kecamatan;
 use App\Http\Requests\StoreLocation;
+use App\Http\Controllers\GlobalController;
 class LocationController extends Controller
 {
 
@@ -34,6 +35,8 @@ class LocationController extends Controller
      */
     public function index()
     {
+        GlobalController::calculateSession();
+
         $kecamatan = Kecamatan::all();
         $location = Location::paginate(10);
         $pelatih = User::where('status', '=', 'pelatih')->where('is_approved', '=', 1)->get(['id', 'name']);

@@ -3,6 +3,22 @@
 
 @section('content')
 
+
+@if(session()->has('status'))
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{ session('status') }}</strong>
+  </div>
+@endif
+
+@if(session()->has('error'))
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{ session('error') }}</strong>
+  </div>
+@endif
+
+
 <div class="nav-tabs-custom">
   <!-- Tabs within a box -->
   <ul class="nav nav-tabs pull-right">
@@ -34,7 +50,8 @@
 
     </div>
     <div class="chart tab-pane" id="anggota" style="position: relative; height: 300px;">
-      <div style="width: 70%; margin-left: auto; margin-right: auto">
+      <div style="width: 70%; margin-left: auto; margin-right: auto;margin-top:20px;">
+      @if(count($users) > 0)
         <table class="table table-bordered" >
           <thead>
             <tr>
@@ -49,10 +66,27 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->no_hp }}</td>
               <td>{{ $user->kecamatan->name }}</td>
+              <td>
+                @if($user->id == $group->user->id )
+                <span class="glyphicon glyphicon-tower"></span> Ketua Grup
+                @else
+                <a href="#form-chleader" data-toggle="modal">
+                  <button class="btn btn-sm btn-primary chleader" data-id="{{ $user->id }}">
+                    Jadikan Ketua
+                  </button>
+                </a>
+                @endif
+              </td>
             </tr>
             @endforeach
           </tbody>
         </table>
+        @else
+        <div class="alert alert-info" role="alert">
+          <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+          Belum ada anggota.
+        </div>
+        @endif
       </div>
     </div>
     <div class="chart tab-pane active" id="overview" style="position: relative; height: 300px;">
@@ -67,7 +101,7 @@
           <tr>
             <th>Ketua Grup</th>
             <td>:</td>
-            <td>{{ $group->user->name }}</td>
+            <td>{{ ($group->user != null) ? $group->user->name : "Belum Tersedia." }}</td>
           </tr>
         </tbody>
       </table>      
@@ -77,12 +111,44 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" role="dialog" id="form-chleader">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="#" id="url-leader" method="POST">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Jadikan Ketua Grup</h4>
+        </div>
+        <div class="modal-body">
+            Apakah anda benar-benar ingin menjadikan santri ini menjadi ketua grup ?
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="leader" id="user_id">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Ya</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @endsection
 
 @push('javascript')
     <script>
       $(document).ready(function(){
         $('#menu-grup').addClass('active');
+
+        $('body').delegate('.chleader', 'click', function(){
+          var id = $('.chleader').data('id');
+          $('#user_id').val(id);
+
+          var url = "{{ url('group/leader') }}/" + "{{ $group->id }}";
+
+          $('#url-leader').attr('action', url);
+        });
       });
     </script>
     <script>

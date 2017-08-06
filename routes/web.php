@@ -27,6 +27,8 @@ Route::resource('location', 'LocationController');
 Route::resource('pelatih', 'PelatihController');
 Route::resource('santri', 'SantriController');
 Route::resource('group', 'GroupController');
+Route::post('group/leader/{id}', 'GroupController@changeLeader');
+
 Route::get('print/group','GroupController@print');
 
 Route::post('santri/{id}/chgroup', 'SantriController@chgroup');
@@ -44,3 +46,4 @@ Route::post('message/cancel/{id}', 'MessageController@sendCancelation');
 Route::get('message/{id}', 'MessageController@getMessage');
 
 Route::post('users/password/{id}', 'HomeController@changePassword');
+Route::post('santri/lvlup/{id}', "SantriController@lvlup");

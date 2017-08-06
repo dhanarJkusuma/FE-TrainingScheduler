@@ -8,7 +8,7 @@ use App\Kecamatan;
 use App\Location;
 use Illuminate\Pagination\Paginator;
 use App\Http\Requests\StorePelatih;
-
+use App\Http\Controllers\GlobalController;
 class PelatihController extends Controller
 {
     public function __construct(){
@@ -24,7 +24,8 @@ class PelatihController extends Controller
             'kecamatan_id' => $data['kecamatan_id'],
             'password' => bcrypt($data['password']),
             'status' => 'pelatih',
-            'is_approved' => 1
+            'is_approved' => 1,
+            'alamat' => $data['alamat']
         ]);
     }
 
@@ -36,6 +37,7 @@ class PelatihController extends Controller
      */
     public function index()
     {
+        GlobalController::calculateSession();
         $users = User::where('is_approved', '=', 1)->where('status', '=', 'pelatih')->paginate(10);
         $kecamatan = Kecamatan::all();
         return view('pelatih')->with(compact('users', 'kecamatan'));

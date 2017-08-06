@@ -24,7 +24,6 @@ class StoreGroup extends FormRequest
     public function rules()
     {
         return [
-            'ketua_grup_id' => 'required',
             'nama_grup' => 'required|string|max:25',
             'lokasi_latihan_id' => 'required'
         ];
@@ -33,7 +32,6 @@ class StoreGroup extends FormRequest
     public function messages()
     {
         return [
-            'ketua_grup_id.required' => 'Ketua Grup tidak boleh kosong.',
             'nama_grup.required' => 'Nama Grup tidak boleh kosong.',
             'lokasi_latihan_id.required' => 'Lokasi Latihan tidak boleh kosong.'
         ];

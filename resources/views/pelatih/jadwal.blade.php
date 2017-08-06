@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Jadwal Hari ini</div>
+                <div class="panel-heading">Daftar Jadwal</div>
 
                 <div class="panel-body">
                 <table class="table table-striped table-bordered">
@@ -36,6 +36,41 @@
                 </table>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+              <div class="panel-heading">Penanggung Jawab</div>
+
+              <div class="panel-body">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Lokasi</th>
+                    <th>Kecamatan</th>
+                    <th>Alamat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @php
+                  $index = 1
+                @endphp
+                @foreach ($user->penanggung as $loc)
+                <tr>
+                  <td style="width: 10px">{{ $index }}</td>
+                  <td>{{ $loc->nama }}</td>
+                  <td>{{ $loc->kecamatan->name }}</td>
+                  <td>{{ $loc->alamat }}</td>
+                </tr>
+                @php
+                  $index++
+                @endphp
+                @endforeach
+                </tbody>
+              </table>
+              </div>
+          </div>
         </div>
     </div>
 </div>

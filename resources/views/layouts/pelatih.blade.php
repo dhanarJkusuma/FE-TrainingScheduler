@@ -38,7 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li id="menu-agenda"><a href="{{ url('home/pelatih') }}">Agenda</a></li>
-                        <li id="menu-jadwal"><a href="{{ url('home/pelatih/jadwal') }}">Jadwal</a></li>
+                        <li id="menu-jadwal"><a href="{{ url('home/pelatih/jadwal') }}">Dashboard</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

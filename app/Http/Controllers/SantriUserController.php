@@ -29,7 +29,7 @@ class SantriUserController extends Controller
             $sesi = array(
                 "Sesi I (06:00 - 11:00)",
                 "Sesi II (13:00 - 17:00)",
-                "Sesi III (20:00 - 12:00)"
+                "Sesi III (20:00 - 00:00)"
             );
             $group = Group::find($group_id);    
             return view('santri.jadwal')->with(compact('group','hari','sesi','day','messages'));

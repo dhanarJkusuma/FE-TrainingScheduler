@@ -20,7 +20,7 @@ class PelatihUserController extends Controller
         $sesi = array(
             "Sesi I (06:00 - 11:00)",
             "Sesi II (13:00 - 17:00)",
-            "Sesi III (20:00 - 12:00)"
+            "Sesi III (20:00 - 00:00)"
         );
         $jadwal = Jadwal::where('hari','=', $day)
                         ->where(function ($query) use ($id) {
@@ -40,14 +40,15 @@ class PelatihUserController extends Controller
         $sesi = array(
             "Sesi I (06:00 - 11:00)",
             "Sesi II (13:00 - 17:00)",
-            "Sesi III (20:00 - 12:00)"
+            "Sesi III (20:00 - 00:00)"
         );
     	$jadwal = Jadwal::where('pelatih_i','=', $id)
     					->orWhere('pelatih_ii','=',$id)
     					->orWhere('pelatih_iii','=',$id)
     					->orderBy('hari','asc')
     					->get();
-    	return view('pelatih.jadwal')->with(compact('jadwal', 'hari', 'sesi'));
+        $user = Auth::user();
+    	return view('pelatih.jadwal')->with(compact('jadwal', 'hari', 'sesi','user'));
     }
 
     public function showDetail($id){
@@ -55,7 +56,7 @@ class PelatihUserController extends Controller
         $sesi = array(
             "Sesi I (06:00 - 11:00)",
             "Sesi II (13:00 - 17:00)",
-            "Sesi III (20:00 - 12:00)"
+            "Sesi III (20:00 - 00:00)"
         );
         $hari = array("Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu");
         $anggota = Group::find($jadwal->grup_id);

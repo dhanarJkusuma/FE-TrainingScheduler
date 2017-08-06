@@ -66,6 +66,11 @@
               Ganti Grup
             </button>
           </a>
+          <a data-toggle="modal" href="#form-lvlup">
+            <button class="btn btn-sm btn-primary lvlup" data-id="{{ $user->id }}">
+              Jadikan Pelatih
+            </button>
+          </a>
           <a href="{{ url('santri') }}/{{ $user->id }}/edit">
             <button class="btn btn-sm btn-success">
               Ubah
@@ -122,6 +127,34 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
           <button type="submit" class="btn btn-warning">Ganti</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="form-lvlup">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="#" id="url-lvlup" method="POST">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Jadikan Pelatih</h4>
+        </div>
+        <div class="modal-body">
+            Apakah anda benar-benar ingin menjadikan santri ini menjadi pelatih?
+            <br/>
+            <br/>
+            <br/>
+            <strong>Note : Saat menjadi pelatih, maka santri akan meninggalkan grup. </strong>
+            <br/>
+            <small><b>Mohon untuk mencopot gelar ketua grup apabila santri tersebut memilikinya.</b></small>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Ya</button>
         </div>
       </form>
     </div><!-- /.modal-content -->
@@ -307,8 +340,13 @@
           $('#grup').val(group).trigger('change.select2');  
         }
         
-        
         $('#url-ganti').attr('action', url);
+      });
+
+      $('body').delegate('.lvlup', 'click', function(){
+        var id = $(this).data('id');
+        var url = "{{ url('santri/lvlup') }}" + "/" + id;
+        $('#url-lvlup').attr('action', url);
       });
   });
 </script>

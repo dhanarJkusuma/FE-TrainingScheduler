@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use App\Http\Controllers\GlobalController;
 
 class ConfirmController extends Controller
 {
@@ -13,6 +14,7 @@ class ConfirmController extends Controller
 
     public function index()
     {
+        GlobalController::calculateSession();
         $users = User::where('is_approved','=',0)->where('status','=','santri')->paginate(10);
         return view('confirm')->with('users', $users);
     }
@@ -22,7 +24,6 @@ class ConfirmController extends Controller
         $user = User::find($request->input('id'));
         $user->is_approved = true;
         $user->save();
-
         $this->checkConfirmation();
 
         $request->session()->flash('status', 'Berhasil menyetujui calon santri.');

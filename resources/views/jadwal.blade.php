@@ -46,7 +46,7 @@
           <tr>
             <th>Ketua Grup</th>
             <td>:</td>
-            <td>{{ $group->user->name }}</td>
+            <td>{{ ($group->user != null) ? $group->user->name : "Belum Tersedia." }}</td>
           </tr>
         </tbody>
       </table>      
@@ -145,9 +145,9 @@
               <label for="sesi" class="col-sm-2 control-label">Sesi</label>
               <div class="col-sm-10">
                 <select class="form-control" name="sesi">
-                  <option value="1">Sesi I</option>
-                  <option value="2">Sesi II</option>
-                  <option value="3">Sesi III</option>
+                  <option value="1">{{ $sesi[0] }}</option>
+                  <option value="2">{{ $sesi[1] }}</option>
+                  <option value="3">{{ $sesi[2] }}</option>
                 </select>
               </div>
             </div>
@@ -231,7 +231,7 @@
     <script>
       $(document).ready(function(){
 
-        $('#menu-confirm').addClass('active');
+        $('#menu-grup').addClass('active');
 
         $('#pelatih_i').select2();
         $('#pelatih_ii').select2();
