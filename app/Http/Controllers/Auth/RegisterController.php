@@ -87,7 +87,7 @@ class RegisterController extends Controller
         $data = $this->validator($request->all());
         $this->create($request->all());
         $this->sendMessage($request->input('no_hp'));
-        $request->session()->flash('status', 'Permohonan pendaftaran telah terkirim. Mohon untuk mendatangi kantor pusat Pagar Nusa untuk konfirmasi lebih lanjut.');
+        $request->session()->flash('status', 'Permohonan pendaftaran telah terkirim.');
 
         return redirect('login');
     }
