@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Location;
+use App\Group;
 use App\Kecamatan;
 use App\Http\Requests\StoreLocation;
 use App\Http\Controllers\GlobalController;
