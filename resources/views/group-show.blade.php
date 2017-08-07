@@ -66,6 +66,7 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->no_hp }}</td>
               <td>{{ $user->kecamatan->name }}</td>
+              @if($user->user != null)
               <td>
                 @if($user->id == $group->user->id )
                 <span class="glyphicon glyphicon-tower"></span> Ketua Grup
@@ -77,6 +78,7 @@
                 </a>
                 @endif
               </td>
+              @endif
             </tr>
             @endforeach
           </tbody>
