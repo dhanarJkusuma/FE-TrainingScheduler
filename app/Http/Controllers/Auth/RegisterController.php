@@ -89,7 +89,7 @@ class RegisterController extends Controller
         
         $data = $this->validator($request->all());
         $this->create($request->all());
-        GlobalController::sendMessage($request->input('no_hp'), config('smsgateway.zensiva_message'))
+        GlobalController::sendMessage($request->input('no_hp'), config('smsgateway.zensiva_message'));
         
         $request->session()->flash('status', 'Permohonan pendaftaran telah terkirim.');
 

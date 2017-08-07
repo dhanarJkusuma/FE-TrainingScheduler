@@ -141,6 +141,7 @@ class SantriController extends Controller
     public function lvlup($id, Request $request){
         $isExist = Group::where('ketua_grup_id','=',$id)->count();
         if($isExist > 0){
+            $user = User::find($id);
             $request->session()->flash('error', 'Gagal menjadikan santri yang bernama "' . $user->name . '" sebagai pelatih. Hapus jabatan santri tersebut sebagai ketua grup.');    
         }else{
             $user = User::find($id);
