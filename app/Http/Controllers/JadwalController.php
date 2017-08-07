@@ -199,7 +199,7 @@ class JadwalController extends Controller
         $found = Jadwal::join('grup_latihan', function($join) use ($request, $group){
             $join->on('jadwal.grup_id','=', 'grup_latihan.id')
                 ->where('grup_latihan.lokasi_latihan_id','=', $group->lokasi_latihan_id)
-                ->where('jadwal.grup_id', '<>', $id)
+                ->where('jadwal.grup_id', '<>', $group->id)
                 ->where('jadwal.hari', '=', $request->input('hari'))
                 ->where('jadwal.sesi', '=', $request->input('sesi'));
         })->count();
