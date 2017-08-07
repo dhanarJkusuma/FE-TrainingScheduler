@@ -139,11 +139,17 @@ class SantriController extends Controller
     }
 
     public function lvlup($id, Request $request){
-        $user = User::find($id);
-        $user->grup_id = null;
-        $user->status = 'pelatih';
-        $user->save();
-        $request->session()->flash('status', 'Berhasil menjadikan santri yang bernama "' . $user->name . '" sebagai pelatih.');
+        $isExist = Group::where('ketua_grup_id','=',$id)->count();
+        if($isExist > 0){
+            $request->session()->flash('error', 'Gagal menjadikan santri yang bernama "' . $user->name . '" sebagai pelatih. Hapus jabatan santri tersebut sebagai ketua grup.');    
+        }else{
+            $user = User::find($id);
+            $user->grup_id = null;
+            $user->status = 'pelatih';
+            $user->save();
+            $request->session()->flash('status', 'Berhasil menjadikan santri yang bernama "' . $user->name . '" sebagai pelatih.');    
+        }
+        
         return redirect('santri');
     }
 }
