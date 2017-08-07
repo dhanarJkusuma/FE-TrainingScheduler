@@ -32,16 +32,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="ketua_grup_id" class="col-sm-2 control-label">Ketua Grup</label>
-          <div class="col-sm-10">
-            <select class="form-control" id="ketua" name="ketua_grup_id" style="width:100%;">
-              @foreach($santri as $s)
-                <option value="{{ $s->id }}">{{ $s->name }}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
           <label for="lokasi_latihan_id" class="col-sm-2 control-label">Lokasi Latihan</label>
           <div class="col-sm-10">
             <select class="form-control" id="lokasi" name="lokasi_latihan_id" style="width:100%;">
