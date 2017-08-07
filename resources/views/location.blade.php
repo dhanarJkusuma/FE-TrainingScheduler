@@ -14,6 +14,20 @@
     </div>
 @endif
 
+@if(session()->has('status'))
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{ session('status') }}</strong>
+  </div>
+@endif
+
+@if(session()->has('error'))
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{ session('error') }}</strong>
+  </div>
+@endif
+
 <div class="box box-success">
   <div class="box-header">
     <i class="fa fa-map-pin"></i>

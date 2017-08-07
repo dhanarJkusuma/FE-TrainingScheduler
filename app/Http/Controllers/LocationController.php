@@ -116,8 +116,14 @@ class LocationController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        Location::where('id','=',$id)->delete();
-        $request->session()->flash('status','Berhasil menghapus lokasi latihan.');
+        $groups = Group::where('lokasi_latihan_id','=',$id)->count();
+        if($groups > 0){
+            $request->session()->flash('error','Gagal menghapus lokasi latihan. Lokasi masih digunakan sebagai tempat latihan.');    
+        }else{
+            Location::where('id','=',$id)->delete();
+            $request->session()->flash('status','Berhasil menghapus lokasi latihan.');    
+        }
+        
         return redirect('location');
     }
 
