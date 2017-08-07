@@ -47,7 +47,7 @@
 				@foreach($groups as $group)
 				<tr>
 					<td>{{ $group->nama_grup }}</td>
-					<td>{{ $group->user->name }}</td>
+					<td>{{ ($group->user!=null) ? $group->user->name : "Belum Ada." }}</td>
 					<td>{{ $group->location->kecamatan->name }}</td>
 					<td>{{ $group->location->alamat }}</td>
 					<td>{{ count($group->anggota) }}</td>

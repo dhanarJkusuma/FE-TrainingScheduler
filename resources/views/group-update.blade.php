@@ -62,10 +62,6 @@
     $('#ketua').select2();
     $('#lokasi').select2();
 
-    @if($group->user!=null)
-    var ketua = {{ $group->user->id }};
-    $('#ketua').val(ketua).trigger('change.select2');
-    @endif
 
     var lokasi = {{ $group->location->id }};
     $('#lokasi').val(lokasi).trigger('change.select2');

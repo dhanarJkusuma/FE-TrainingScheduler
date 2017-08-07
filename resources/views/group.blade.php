@@ -55,7 +55,7 @@
         <td>
           <a href="{{ url('group') }}/{{ $group->id }}">
             <button class="btn btn-info">
-              <span class="glyphicon glyphicon-eye-open"></span>
+              Kelola Grup
             </button>
           </a>
           <a href="{{ url('group/jadwal') }}/{{ $group->id }}">
