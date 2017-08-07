@@ -100,7 +100,7 @@
         <div class="modal-body">
                     
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="menu" value="santri">
+            <input type="hidden" name="menu" value="pelatih">
 
             <div class="form-group">
               <label for="c_password" class="col-sm-2 control-label">Password</label>

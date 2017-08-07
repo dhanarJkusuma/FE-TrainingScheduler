@@ -125,11 +125,18 @@ class SantriController extends Controller
     }
 
     public function chgroup($id, Request $request){
-        $santri = User::where('status' , '=', 'santri')->where('is_approved', '=', 1)->where('id', '=', $id)->first();
-        $santri->grup_id = $request->input('grup_id');
-        $santri->save();
+        $found = Group::where('ketua_grup_id','=', $id)->count();
 
-        $request->session()->flash('status', 'Berhasil mengganti grup santri.');
+        if($found > 0){
+            $request->session()->flash('error', 'Gagal mengganti grup santri. Santri tersebut masih menjadi ketua grup.');
+        }else{
+            $santri = User::where('status' , '=', 'santri')->where('is_approved', '=', 1)->where('id', '=', $id)->first();
+            $santri->grup_id = $request->input('grup_id');
+            $santri->save();
+
+            $request->session()->flash('status', 'Berhasil mengganti grup santri.');
+        }
+        
         return redirect('santri');
     }
 
