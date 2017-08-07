@@ -170,10 +170,16 @@
           <h4 class="modal-title">Hapus Santri</h4>
         </div>
         <div class="modal-body">
-            Apakah anda benar-benar ingin menghapus data ini?
+            Apakah anda benar-benar ingin menghapus santri ini?
             <input name="_method" type="hidden" value="DELETE" />
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <strong>Note : Santri yang masih menjadi sebagai ketua kelompok tidak dapat dihapus.</strong>
+            <br/>
+            <small>#Mohon untuk melepas tanggung jawab ketua kelompok pada santri sebelum menghapus santri tersebut</small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>

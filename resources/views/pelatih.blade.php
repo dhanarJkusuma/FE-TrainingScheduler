@@ -136,7 +136,14 @@
           <h4 class="modal-title">Hapus Pelatih</h4>
         </div>
         <div class="modal-body">
-            Apakah anda benar-benar ingin menghapus data ini?
+            Apakah anda benar-benar ingin menghapus pelatih ini?
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <strong>Note : Pelatih yang masih menjadi penanggung jawab lokasi atau masih melatih sebagi "Pelatih 1" tidak dapat dihapus.</strong>
+            <br/>
+            <small>#Mohon untuk melepas tanggung jawab sebagai penanggung jawab lokasi atau mengganti pelatih 1 yang terkait dengan pelatih tersebut</small>
             <input name="_method" type="hidden" value="DELETE" />
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="id" id="user_id">

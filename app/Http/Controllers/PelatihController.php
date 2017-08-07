@@ -114,8 +114,12 @@ class PelatihController extends Controller
     public function destroy($id, Request $request)
     {
         $found = Location::where('penanggung_jawab','=', $id)->count();
+        $pelatih = Jadwal::where('pelatih_i','=',$id)->count();
+
         if($found > 0){
             $request->session()->flash('error','Gagal menghapus pelatih, pelatih masih menjadi tanggung jawab pengurus lokasi. ');    
+        }else if($pelatih > 0){
+            $request->session()->flash('error','Gagal menghapus pelatih, pelatih masih menjadi pelatih 1. ');    
         }else{
             User::where('status','=','pelatih')->where('is_approved','=',1)->where('id','=',$id)->delete();
             $request->session()->flash('status','Berhasil menghapus pelatih.');    
