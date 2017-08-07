@@ -13,7 +13,7 @@
                         <tr>
                           <td>Hari</td>
                           <td>:</td>
-                          <td>{{ $hari[$jadwal->hari] }}</td>
+                          <td>{{ $hari[$jadwal->hari-1] }}</td>
                         </tr>
                         <tr>
                           <td>Grup</td>
@@ -23,7 +23,7 @@
                         <tr>
                           <td>Sesi</td>
                           <td>:</td>
-                          <td>{{ $sesi[$jadwal->sesi] }}</td>
+                          <td>{{ $sesi[$jadwal->sesi-1] }}</td>
                         </tr>
                       </tbody>
                     </table>
