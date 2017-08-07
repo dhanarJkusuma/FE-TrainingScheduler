@@ -96,7 +96,12 @@
           <h4 class="modal-title">Hapus Grup</h4>
         </div>
         <div class="modal-body">
-            Apakah anda benar-benar ingin menghapus data ini?
+            Apakah anda benar-benar ingin menghapus group ini?
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <strong>Note : Apabila grup dihapus maka jadwal yang berkaitan dengan grup akan dihapus.</strong>
             <input name="_method" type="hidden" value="DELETE" />
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </div>

@@ -66,19 +66,26 @@
               <td>{{ $user->name }}</td>
               <td>{{ $user->no_hp }}</td>
               <td>{{ $user->kecamatan->name }}</td>
-              @if($user->user != null)
+              
               <td>
-                @if($user->id == $group->user->id )
-                <span class="glyphicon glyphicon-tower"></span> Ketua Grup
+                @if($user->user != null)
+                  @if($user->id == $group->user->id )
+                  <span class="glyphicon glyphicon-tower"></span> Ketua Grup
+                  @else
+                  <a href="#form-chleader" data-toggle="modal">
+                    <button class="btn btn-sm btn-primary chleader" data-id="{{ $user->id }}">
+                      Jadikan Ketua
+                    </button>
+                  </a>
+                  @endif
                 @else
-                <a href="#form-chleader" data-toggle="modal">
-                  <button class="btn btn-sm btn-primary chleader" data-id="{{ $user->id }}">
-                    Jadikan Ketua
-                  </button>
-                </a>
+                  <a href="#form-chleader" data-toggle="modal">
+                    <button class="btn btn-sm btn-primary chleader" data-id="{{ $user->id }}">
+                      Jadikan Ketua
+                    </button>
+                  </a>
                 @endif
               </td>
-              @endif
             </tr>
             @endforeach
           </tbody>
