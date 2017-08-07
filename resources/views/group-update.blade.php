@@ -67,11 +67,17 @@
   <script>
   $(document).ready(function(){
     $('#menu-grup').addClass('active');
-    var ketua = {{ $group->user->id }};
-    var lokasi = {{ $group->location->id }};
+    
+    
     $('#ketua').select2();
     $('#lokasi').select2();
+
+    @if($group->user!=null)
+    var ketua = {{ $group->user->id }};
     $('#ketua').val(ketua).trigger('change.select2');
+    @endif
+
+    var lokasi = {{ $group->location->id }};
     $('#lokasi').val(lokasi).trigger('change.select2');
     
     //$('.select2').select2('data', {id: value, a_key: key});
