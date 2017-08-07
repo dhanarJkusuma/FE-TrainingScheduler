@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Agu 2017 pada 13.34
+-- Generation Time: 07 Agu 2017 pada 06.07
 -- Versi Server: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `grup_latihan` (
   `id` int(10) NOT NULL,
-  `ketua_grup_id` int(10) UNSIGNED NOT NULL,
+  `ketua_grup_id` int(10) UNSIGNED DEFAULT NULL,
   `nama_grup` varchar(25) NOT NULL,
   `lokasi_latihan_id` int(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -171,7 +171,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `status`, `no_hp`, `kecamatan_id`, `alamat`, `grup_id`, `is_approved`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@pagarnusa.com', '$2y$10$AWpRME0MsVHp2SMJOuVaceP25oy05drslvfhw2d4lH1TaQqww6S5G', 'bjoaemeNRKGOz3opmGhGckBCEuIo4BcXXQ8hbVdAPMEJyj0XYbpIpIGdh3PB', 'admin', '13123', 3310140, NULL, NULL, 1, '2017-08-02 05:32:06', '2017-08-02 05:32:06');
+(1, 'Administrator', 'admin@pagarnusa.com', '$2y$10$AWpRME0MsVHp2SMJOuVaceP25oy05drslvfhw2d4lH1TaQqww6S5G', '6R63Q6AN1QPiI5Ss6c6WSA5B1OWBF19JjKgSuNpGVDR3v9TCBdTUtoR49gjl', 'admin', '13123', 3310140, NULL, NULL, 1, '2017-08-02 05:32:06', '2017-08-02 05:32:06');
 
 --
 -- Indexes for dumped tables

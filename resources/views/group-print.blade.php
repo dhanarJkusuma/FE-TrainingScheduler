@@ -21,7 +21,7 @@
 	<div style="width: 100%">
 		<div style="margin-right: auto;margin-left: auto;">
 			<h4 align="center">DAFTAR GRUP PAGAR NUSA</h4>
-			<p align="center">KABUPATEN KLATEN</p>
+			<h4 align="center">KABUPATEN KLATEN</h4>
 		</div>
 		<br/>
 		<br/>
