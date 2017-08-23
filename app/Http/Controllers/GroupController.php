@@ -112,7 +112,7 @@ class GroupController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        Group::where('id','=',$id)->delete();
+        Group::where('id','=', $id)->delete();
         $request->session()->flash('status','Berhasil menghapus grup.');
         return redirect('group');
     }

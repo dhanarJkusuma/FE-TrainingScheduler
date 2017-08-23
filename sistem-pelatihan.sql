@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Agu 2017 pada 06.07
+-- Generation Time: 23 Agu 2017 pada 16.35
 -- Versi Server: 10.1.24-MariaDB
 -- PHP Version: 7.0.20
 
@@ -136,9 +136,9 @@ CREATE TABLE `migrations` (
 
 CREATE TABLE `pesan` (
   `id` int(10) NOT NULL,
-  `jadwal_id` int(10) NOT NULL,
+  `jadwal_id` int(10) DEFAULT NULL,
   `status` enum('biasa','batal') NOT NULL,
-  `pelatih` int(10) UNSIGNED NOT NULL,
+  `pelatih` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `pesan` text NOT NULL
